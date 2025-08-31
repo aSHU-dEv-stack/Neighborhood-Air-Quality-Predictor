@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Air Quality Predictor — Demo</title>
+    <style>
+        body {
+            font-family: system-ui, Arial;
+            max-width: 800px;
+            margin: 24px auto;
+            padding: 12px;
+        }
+
+        button {
+            padding: 8px 12px;
+            font-size: 16px;
+        }
+
+        pre {
+            background: #f6f6f6;
+            padding: 12px;
+            border-radius: 6px;
+        }
+    </style>
+    <!-- TensorFlow.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
+</head>
+
+<body>
+    <h1>Air Quality Predictor — In-Browser Demo</h1>
+    <p>This trains a tiny model on synthetic data and predicts the next PM value from the last 12 measurements.</p>
+    <button id="trainBtn">Train model</button>
+    <button id="predictBtn" disabled>Predict next value</button>
+    <div id="status"></div>
+    <h3>Last Prediction</h3>
+    <pre id="output">—</pre>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
