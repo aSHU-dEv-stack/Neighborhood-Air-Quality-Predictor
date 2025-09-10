@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 2 - Air Quality Predictor</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <!-- Add Bootstrap for responsive design -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Add Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header class="bg-primary text-white text-center py-4">
+        <h1>Air Quality Predictor</h1>
+        <p class="lead">Week 2: ML Model Selection & Implementation</p>
+    </header>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card mb-4">
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="card-title mb-0">Navigation</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="../index.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../Week1/">Week 1</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="./index.html">Week 2</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../Week3/">Week 3</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="card mb-4">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="card-title mb-0">Week 2 Goals</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>In Week 2, we focus on model selection, implementation, and evaluation:</p>
+                        <ul>
+                            <li><strong>4. Rectify which ML model should implement on the dataset</strong> - Select appropriate models for air quality prediction</li>
+                            <li><strong>5. Implement your ML model</strong> - Build and train the selected model</li>
+                            <li><strong>6. Evaluate your ML model accuracy</strong> - Test and measure model performance</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="card-title mb-0">Data Loading</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>Upload your air quality data CSV file or use a public API to fetch data.</p>
+                        
+                        <ul class="nav nav-tabs" id="dataSourceTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="csv-tab" data-bs-toggle="tab" data-bs-target="#csv" type="button" role="tab" aria-controls="csv" aria-selected="true">CSV Upload</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="api-tab" data-bs-toggle="tab" data-bs-target="#api" type="button" role="tab" aria-controls="api" aria-selected="false">API Data</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="sample-tab" data-bs-toggle="tab" data-bs-target="#sample" type="button" role="tab" aria-controls="sample" aria-selected="false">Sample Data</button>
+                            </li>
+                        </ul>
+                        
+                        <div class="tab-content mt-3" id="dataSourceTabsContent">
+                            <div class="tab-pane fade show active" id="csv" role="tabpanel" aria-labelledby="csv-tab">
+                                <div class="mb-3">
+                                    <label for="csvFileInput" class="form-label">Upload CSV File:</label>
+                                    <input class="form-control" type="file" id="csvFileInput" accept=".csv">
+                                    <div class="form-text">CSV should contain columns for date, pollutant values, and location (optional).</div>
+                                </div>
+                                <button id="loadCsvButton" class="btn btn-primary">Load Data</button>
+                            </div>
+                            
+                            <div class="tab-pane fade" id="api" role="tabpanel" aria-labelledby="api-tab">
+                                <div class="mb-3">
+                                    <label for="locationInput" class="form-label">Location:</label>
+                                    <input type="text" class="form-control" id="locationInput" placeholder="City name or coordinates">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="apiSelect" class="form-label">API Source:</label>
+                                    <select class="form-select" id="apiSelect">
+                                        <option value="openaq">OpenAQ</option>
+                                        <option value="airnow">AirNow</option>
+                                        <option value="waqi">WAQI</option>
+                                    </select>
+                                </div>
+                                <button id="fetchApiButton" class="btn btn-primary">Fetch Data</button>
+                            </div>
+                            
+                            <div class="tab-pane fade" id="sample" role="tabpanel" aria-labelledby="sample-tab">
+                                <p>Use our sample dataset for testing:</p>
+                                <div class="mb-3">
+                                    <label for="sampleSelect" class="form-label">Sample Dataset:</label>
+                                    <select class="form-select" id="sampleSelect">
+                                        <option value="beijing">Beijing Air Quality (2013-2017)</option>
+                                        <option value="london">London Air Quality (2018-2022)</option>
+                                        <option value="delhi">Delhi Air Quality (2019-2023)</option>
+                                    </select>
+                                </div>
+                                <button id="loadSampleButton" class="btn btn-primary">Load Sample</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card mb-4">
+                    <div class="card-header bg-warning text-dark">
+                        <h5 class="card-title mb-0">Data Preview</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="dataPreviewContainer">
+                            <p class="text-center text-muted">No data loaded yet. Please load data using one of the options above.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-3 mt-4">
+        <p>Air Quality Predictor &copy; 2023</p>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../scripts/main.js"></script>
+    <script src="./scripts/week2.js"></script>
+</body>
+</html>
