@@ -1,0 +1,97 @@
+/* Main Styles for Air Quality Predictor */
+
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2c3e50;
+    --accent-color: #e74c3c;
+    --light-color: #ecf0f1;
+    --dark-color: #2c3e50;
+    --success-color: #2ecc71;
+    --warning-color: #f39c12;
+    --danger-color: #e74c3c;
+    --info-color: #3498db;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.nav-link {
+    color: var(--secondary-color);
+    transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+    color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+.nav-link.active {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+    border-color: #2980b9;
+}
+
+/* Data visualization container styles */
+.chart-container {
+    position: relative;
+    margin: auto;
+    height: 300px;
+    width: 100%;
+}
+
+/* Custom styles for air quality indicators */
+.aqi-good {
+    color: #00e400;
+}
+
+.aqi-moderate {
+    color: #ffff00;
+}
+
+.aqi-unhealthy-sensitive {
+    color: #ff7e00;
+}
+
+.aqi-unhealthy {
+    color: #ff0000;
+}
+
+.aqi-very-unhealthy {
+    color: #99004c;
+}
+
+.aqi-hazardous {
+    color: #7e0023;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .chart-container {
+        height: 200px;
+    }
+}
